@@ -1,0 +1,30 @@
+.row
+	.col-lg-8.col-lg-offset-2
+		= form_for @item, html: {id: 'item-form', class: 'form-horizontal form', multipart: true} do |f|
+			%fieldset
+
+				.form-group.name
+					= f.label :name, class: 'col-lg-2 control-label'
+					.col-lg-10
+						= f.text_field :name, class: 'form-control', placeholder: 'name of item', autocomplete: :off, required: true
+	
+				%main#image-preview
+					%section
+						%h2
+							Add a Photo
+						#dropzone
+							%i.fa.fa-camera
+							.message 
+								Drop a photo here or click to add it.
+								%br
+								%span.note
+									No photo? no problem, 
+									%strong 
+										select a category above 
+									and we'll handle it.
+								.fallback
+									= f.file_field :image, class: 'img-input', multiple: false
+
+				.submit-section
+					.col-lg-12.col-md-12
+						= f.submit 'Done', id: 'item-submit', class: 'btn btn-primary btn-lg btn-block'
